@@ -1,0 +1,24 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:title="Notifications"
+        app:icon="@drawable/ic_notifications">
+
+        <SeekBarPreference
+            app:key="volume_notifications"
+            app:title="Volume"
+            app:showSeekBarValue="true"
+            app:defaultValue="50"/>
+
+        <SwitchPreferenceCompat
+            app:key="notifications"
+            app:title="Set Reminder"
+            android:defaultValue="false"
+            app:summaryOn="Reminder at 9:00 AM"
+            app:summaryOff="Alarm Manager has been disabled"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
