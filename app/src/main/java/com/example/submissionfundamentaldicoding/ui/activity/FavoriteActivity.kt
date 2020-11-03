@@ -1,5 +1,6 @@
 package com.example.submissionfundamentaldicoding.ui.activity
 
+import android.database.Cursor
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submissionfundamentaldicoding.R
 import com.example.submissionfundamentaldicoding.adapter.FavoriteAdapter
-import com.example.submissionfundamentaldicoding.db.Favorite
 import com.example.submissionfundamentaldicoding.presenter.FavoritePresenter
 import com.example.submissionfundamentaldicoding.presenter.InterfaceContractFavorite
 import kotlinx.android.synthetic.main.activity_favorite.*
@@ -36,7 +36,7 @@ class FavoriteActivity : AppCompatActivity(), InterfaceContractFavorite.View {
             val favorite = presenter.getAllData()
 
             runOnUiThread {
-                if (favorite.isNotEmpty()){
+                if (favorite != null){
                     rv_favorite.visibility = View.VISIBLE
                     tv_nodata.visibility = View.GONE
                     adapter.setData(favorite)
@@ -48,7 +48,7 @@ class FavoriteActivity : AppCompatActivity(), InterfaceContractFavorite.View {
         }
 
         adapter.setOnCLickListener(object : FavoriteAdapter.FavoriteInterface{
-            override fun deleteItem(users: Favorite, position: Int) {
+            override fun deleteItem(users: Int?, position: Int) {
                 presenter.delete(users)
                 presenter.getAllData()
             }
@@ -64,7 +64,7 @@ class FavoriteActivity : AppCompatActivity(), InterfaceContractFavorite.View {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
-    override fun showData(favorite: MutableList<Favorite>) {
+    override fun showData(favorite: Cursor) {
         adapter.setData(favorite)
     }
 }

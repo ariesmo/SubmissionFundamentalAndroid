@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <provider
+            android:name=".provider.GitProvider"
+            android:authorities="com.example.submissionfundamentaldicoding.provider.GitProvider"
+            android:enabled="true"
+            android:exported="true"></provider>
+
         <activity
             android:name=".ui.activity.SettingsActivity"
             android:parentActivityName=".ui.activity.MainActivity">

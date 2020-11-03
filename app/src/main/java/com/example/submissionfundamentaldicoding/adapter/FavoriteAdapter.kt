@@ -1,5 +1,6 @@
 package com.example.submissionfundamentaldicoding.adapter
 
+import android.database.Cursor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ class FavoriteAdapter() : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
     private lateinit var listener : FavoriteInterface
 
     interface FavoriteInterface {
-        fun deleteItem(users: Favorite, position: Int)
+        fun deleteItem(users: Int?, position: Int)
     }
 
     fun setOnCLickListener(listener: FavoriteInterface){
@@ -31,13 +32,13 @@ class FavoriteAdapter() : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
             itemView.tv_name_favorite.text = users.name
             listener.let {
                 itemView.btn_delete.setOnClickListener {
-                    listener.deleteItem(users, position)
+                    listener.deleteItem(users.id, position)
                 }
             }
         }
     }
 
-    fun setData(item: MutableList<Favorite>){
+    fun setData(item: Cursor){
         this.list.clear()
         this.list.addAll(item)
         notifyDataSetChanged()
